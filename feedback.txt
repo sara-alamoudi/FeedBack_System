@@ -1,0 +1,29 @@
+#include <Servo.h>
+
+int pos = 0;
+
+int myservo = 0;
+
+Servo servo_5;
+
+void setup()
+{
+  pinMode(A0, INPUT);
+  Serial.begin(9600);
+
+  pinMode(3, OUTPUT);
+  servo_5.attach(5);
+
+}
+
+void loop()
+{
+  pos = analogRead(A0);
+  Serial.println(pos);
+  analogWrite(3, map(pos, 0, 1023, 0, 180));
+  myservo = map(pos, 0, 1023, 0, 180);
+  servo_5.write(myservo);
+  Serial.println(myservo);
+  delay(500); // Wait for 500 millisecond(s)
+}
+
